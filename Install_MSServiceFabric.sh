@@ -11,6 +11,16 @@ sudo sh -c 'echo "deb [arch=amd64] http://apt-mo.trafficmanager.net/repos/dotnet
 sudo apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
 sudo apt-get update
+sudo apt-get install servicefabricsdkcommon
 sudo echo "servicefabric servicefabric/accepted-eula-v1 select true" | sudo debconf-set-selections
 sudo echo "servicefabricsdkcommon servicefabricsdkcommon/accepted-eula-v1 select true" | sudo debconf-set-selections
 sudo /opt/microsoft/sdk/servicefabric/common/sdkcommonsetup.sh
+sudo apt-get autoclean
+sudo apt-get autoremove
+# Install azure-cli
+npm install -g azure-cli
+azure --completion >> ~/azure.completion.sh
+echo 'source ~/azure.completion.sh' >> ~/.bash_profile
+source ~/azure.completion.sh
+# Setup a local cluster
+sudo /opt/microsoft/sdk/servicefabric/common/clustersetup/devclustersetup.sh
